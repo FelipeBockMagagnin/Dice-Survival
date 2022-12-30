@@ -6,14 +6,7 @@ public class DiceController : MonoBehaviour
 {
     public float rotationAmount = .9f;
     public float delaySpeed = .001f;
-
-    public bool isRotating = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool isRotating = false;
 
     // Update is called once per frame
     void Update()
@@ -52,4 +45,5 @@ public class DiceController : MonoBehaviour
             yield return new WaitForSeconds(delaySpeed);
         }
     }
+
 }
