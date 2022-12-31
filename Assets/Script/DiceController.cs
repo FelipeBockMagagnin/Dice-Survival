@@ -8,6 +8,9 @@ public class DiceController : MonoBehaviour
     public float delaySpeed = .001f;
     private bool isRotating = false;
 
+    public GameManager gameManager;
+    public CurrentSide currentSide;
+
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +47,16 @@ public class DiceController : MonoBehaviour
             }
             yield return new WaitForSeconds(delaySpeed);
         }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Enemy")) {
+            int number = other.gameObject.GetComponent<Enemy>().currentNumber;
+            Destroy(other.gameObject);
+            Debug.Log(number + " - " + currentSide.side);
+            gameManager.score.text = (int.Parse(gameManager.score.text) + (number == currentSide.side ? 1 : -1)).ToString();
+        }
+        
     }
 
 }
